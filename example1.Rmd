@@ -1,0 +1,49 @@
+---
+title: "Simple example for inferring Causal Graphs from Correlation Matrices using pcalg packages "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#install.packages("pcalg")
+
+library(bnlearn)
+library(pcalg)
+```
+
+```{r}
+#Loading Asia dataset
+data(asia)
+
+# Ground truth network for Asia
+asia_dag = model2network("[A][S][T|A][L|S][B|S][D|B:E][E|T:L][X|E]")
+
+# Changing to numerical labels: 1s and 0s
+asia[] <- +(asia=="yes")
+
+# Converting into the Correlation Matrices using Kendall's tau statistic to estimate a rank-based measure of association.
+cor_asia <- cor(asia, method = c("kendall"))
+
+# Reading number of row and label names
+n <- nrow (asia)
+V <- colnames(asia) # labels aka node names
+
+#Estimaing causal graph using PC algorithm
+pc.fit <- pc(suffStat = list(C = cor_asia, n = n),
+indepTest = gaussCItest, ## indep.test: partial correlations
+alpha=0.01, labels = V, verbose = FALSE)
+
+#Converting pcAlgo type objects to bn type objects.
+Estimated = as.bn(pc.fit, check.cycles = FALSE)
+#Plotting
+if (require(Rgraphviz)) {
+## show estimated CPDAG
+par(mfrow=c(1,2))
+graphviz.plot(asia_dag, main ="True Network")
+graphviz.plot(Estimated, main = "Estimated CPDAG")
+}
+```
+

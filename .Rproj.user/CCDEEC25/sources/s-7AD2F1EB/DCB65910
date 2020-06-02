@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1590559137998.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "DCB65910",
+    "lastKnownWriteTime" : 4463134675,
+    "last_content_update" : 1590559137998,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "D7804756",
+        "caption" : "cor_asia",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=cor_asia&cache_key=D7804756",
+        "displayedObservations" : "8",
+        "environment" : "",
+        "expression" : "cor_asia",
+        "object" : "cor_asia",
+        "preview" : "0",
+        "totalObservations" : "8",
+        "variables" : "8"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 11,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
